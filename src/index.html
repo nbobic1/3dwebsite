@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=debice-width, initial-scale=1.0">
+        <title>Three.js projekat</title>
+        <style>
+         /*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+         
+html.has-scroll-smooth {
+ overflow: hidden;}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.has-scroll-smooth body {
+  overflow: hidden; }
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh; }
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap; }
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%; }
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0; }
+  .c-scrollbar:hover {
+    transform: scaleX(1.45); }
+  .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+    opacity: 1; }
+  [data-scroll-direction="horizontal"] .c-scrollbar {
+    width: 100%;
+    height: 10px;
+    top: auto;
+    bottom: 0;
+    transform: scaleY(1); }
+    [data-scroll-direction="horizontal"] .c-scrollbar:hover {
+      transform: scaleY(1.3); }
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab; }
+  .has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing; }
+  [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+    right: auto;
+    bottom: 0; }
+            body{
+                height: 0;
+                background-color: #2a2e34;
+                margin:0px;
+            }
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            main {
+                width: 100vw;
+                height: 200vw;
+                z-index: 99;
+                position: absolute;
+                justify-content: center;
+                text-align: center;
+                pointer-events: none;
+                font-size: 5vh;
+            }
+
+            section {
+                min-height: 100vh;
+                padding: 20px;
+                font-size: 4vh;
+            }
+
+            #scrollProgress {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                z-index: 99;
+                font-size: 3vh;
+            }
+            
+  h1{
+    padding-top: 50px;  
+    color:#2a2e34;  
+  }
+h2{
+    color: red;
+    font-family:fantasy;
+}
+.square {
+    width: 1000px;
+    height: 500px;
+    padding: 20px;
+    color: #2a2e34;
+    background: rgb(255,221,0);
+background: linear-gradient(176deg, rgba(255,221,0,0.9864320728291317) 0%, rgba(255,221,0,0.969625350140056) 0%, rgba(244,193,72,0.9724264705882353) 100%);
+ border-radius: 10%;
+  }
+
+  .square1 {
+    width: 1000px;
+    height: 700px;
+    padding: 20px;
+   color: #2a2e34;
+   background: rgb(255,221,0);
+background: linear-gradient(176deg, rgba(255,221,0,0.9864320728291317) 0%, rgba(255,221,0,0.969625350140056) 0%, rgba(244,193,72,0.9724264705882353) 100%);
+ border-radius: 10%;
+  float: right;
+  }
+  @keyframes wipe-enter {
+	0% {
+		transform: scale(0, 1);
+        
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+  @media (prefers-reduced-motion: no-preference) {
+    .square-animation {
+      animation: wipe-enter 2s 1;
+    }
+  }
+  ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+  color:white;
+}
+a{
+    color: red;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-right: 80px;
+    padding-left: 80px;
+    
+}
+menu{
+    width: 100%;
+    background-color: #2a2e34;
+    padding: 0px;
+    margin: 0;
+    position: fixed;
+}
+li{
+    padding: 20px;
+    display: inline;
+}
+        </style>
+    </head>
+    <body >
+        
+       
+        <main >
+        <menu style="z-index: 2;">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">News</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">About</a></li>
+                  </ul>
+            </menu>
+        <section data-scroll-container>
+            <h1 data-scroll-section>MUZEJ MLADE BOSNE</h1>
+            <section data-scroll-section>
+                <br><br><br><br><br><br><br><br><br><br>
+                <p>SPONSORED BY LADY</p>
+            </section>
+            <section data-scroll-section>
+              <h2>Historija</h2>
+              <div  data-scroll class="square">Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br> njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“. Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i objavila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+
+                  
+                  Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+          </section>
+           <section  data-scroll-section>
+            <p> dafdaf</p>
+            </section>
+            <section  data-scroll-section>
+              <p> dafdaf2</p>
+              </section>
+      <section  data-scroll-section><h2 >Historija</h2>
+                <div data-scroll class="square1">  Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br>
+               njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“.
+                Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i obj
+                avila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+
+                    
+                    Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+            
+      </section>
+              
+      <section  data-scroll-section>
+        <p> dafdaf</p>
+        </section><section  data-scroll-section>
+          <p> dafdaf</p>
+          </section>
+        </section>
+        </main>
+        <script type="module" src="./js/script.js"></script>
+       </body>    
+</html>

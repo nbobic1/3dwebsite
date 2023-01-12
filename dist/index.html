@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=debice-width, initial-scale=1.0">
+        <title>Three.js projekat</title>
+        <style>html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+  display: inline-block;
+}
+
+.c-scrollbar {
+  width: 11px;
+  height: 100%;
+  transform-origin: 100%;
+  opacity: 0;
+  transition: transform .3s, opacity .3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  opacity: .5;
+  width: 7px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  background-color: #000;
+  border-radius: 10px;
+  margin: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+  bottom: 0;
+  right: auto;
+}
+
+body {
+  height: 0;
+  background-color: #2a2e34;
+  margin: 0;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+main {
+  width: 100vw;
+  height: 200vw;
+  z-index: 99;
+  text-align: center;
+  pointer-events: none;
+  justify-content: center;
+  font-size: 5vh;
+  position: absolute;
+}
+
+section {
+  min-height: 100vh;
+  padding: 20px;
+  font-size: 4vh;
+}
+
+#scrollProgress {
+  z-index: 99;
+  font-size: 3vh;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+h1 {
+  color: #2a2e34;
+  padding-top: 50px;
+}
+
+h2 {
+  color: red;
+  font-family: fantasy;
+}
+
+.square {
+  width: 1000px;
+  height: 500px;
+  color: #2a2e34;
+  background: linear-gradient(176deg, #ffdd00fc 0%, #ffdd00f7 0%, #f4c148f8 100%);
+  border-radius: 10%;
+  padding: 20px;
+}
+
+.square1 {
+  width: 1000px;
+  height: 700px;
+  color: #2a2e34;
+  float: right;
+  background: linear-gradient(176deg, #ffdd00fc 0%, #ffdd00f7 0%, #f4c148f8 100%);
+  border-radius: 10%;
+  padding: 20px;
+}
+
+@keyframes wipe-enter {
+  0% {
+    transform: scale(0, 1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .square-animation {
+    animation: 2s wipe-enter;
+  }
+}
+
+ul {
+  width: 100%;
+  color: #fff;
+  margin: auto;
+  padding: 20px;
+  list-style-type: none;
+}
+
+a {
+  color: red;
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+menu {
+  width: 100%;
+  background-color: #2a2e34;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+}
+
+li {
+  padding: 20px;
+  display: inline;
+}
+
+</style>
+    </head>
+    <body>
+        
+       
+        <main>
+        <menu style="z-index: 2">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">News</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">About</a></li>
+                  </ul>
+            </menu>
+        <section data-scroll-container="">
+            <h1 data-scroll-section="">MUZEJ MLADE BOSNE</h1>
+            <section data-scroll-section="">
+                <br><br><br><br><br><br><br><br><br><br>
+                <p>SPONSORED BY LADY</p>
+            </section>
+            <section data-scroll-section="">
+              <h2>Historija</h2>
+              <div data-scroll="" class="square">Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br> njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“. Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i objavila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+
+                  
+                  Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+          </section>
+           <section data-scroll-section="">
+            <p> dafdaf</p>
+            </section>
+            <section data-scroll-section="">
+              <p> dafdaf2</p>
+              </section>
+      <section data-scroll-section=""><h2>Historija</h2>
+                <div data-scroll="" class="square1">  Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br>
+               njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“.
+                Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i obj
+                avila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+
+                    
+                    Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+            
+      </section>
+              
+      <section data-scroll-section="">
+        <p> dafdaf</p>
+        </section><section data-scroll-section="">
+          <p> dafdaf</p>
+          </section>
+        </section>
+        </main>
+        <script src="/index.e82f28a0.js" defer=""></script>
+       </body>    
+</html>
