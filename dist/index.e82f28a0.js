@@ -539,7 +539,7 @@ var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
 var _locomotiveScroll = require("locomotive-scroll");
 var _locomotiveScrollDefault = parcelHelpers.interopDefault(_locomotiveScroll);
 //import LocomotiveScroll from 'locomotive-scroll';
-const monkeyUrl = new URL(require("3acaea9eac7ed71c"));
+const monkeyUrl = new URL(require("1bf8c3a119bd9c1f"));
 const renderer = new _three.WebGLRenderer({
     antialias: true
 });
@@ -549,17 +549,17 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 const scene = new _three.Scene();
 renderer.shadowMap.enabled = true;
-//const camera = new THREE.OrthographicCamera( window.innerWidth / - 50, window.innerWidth / 50, window.innerHeight / 50, window.innerHeight / -50, - 500, 1000); 
+//const camera = new THREE.OrthographicCamera( window.innerWidth / - 50, window.innerWidth / 50, window.innerHeight / 50, window.innerHeight / -50, - 500, 1000);
 const camera = new _three.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 70;
 //var controls;
 /*
 const controls = new THREE.OrbitControls(camera);
 controls.target.set(0, 5, 0);
-controls.update();*/ //const hemiLight = new THREE.HemisphereLight( 0xFFFFFF, 0xffffff, 1); 
+controls.update();*/ //const hemiLight = new THREE.HemisphereLight( 0xFFFFFF, 0xffffff, 1);
 var roti = true;
 var rot_val = 0;
-const hemiLight = new _three.DirectionalLight(0xFFFFFF, 1);
+const hemiLight = new _three.DirectionalLight(0xffffff, 0.9);
 hemiLight.position.x = 20;
 hemiLight.position.y = 20;
 hemiLight.position.z = 80;
@@ -574,7 +574,7 @@ hemiLight.target.position.set(-10, 0, -4);
 scene.add(hemiLight);
 var loader = new _three.TextureLoader();
 var materialert = new _three.MeshLambertMaterial({
-    map: loader.load("https://i.ibb.co/QN71WjD/Untitled.png"),
+    map: loader.load(new URL(require("ef7910b50d88621d"))),
     transparent: true,
     opacity: 0,
     reflectivity: 0
@@ -799,7 +799,7 @@ scroll.on("scroll", ({ limit , scroll  })=>{
     scrollPercent = scroll.y / limit.y * 100;
 });
 
-},{"three":"ktPTu","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","three/examples/jsm/controls/OrbitControls.js":"7mqRv","3acaea9eac7ed71c":"hUMtI","locomotive-scroll":"iDXE3","@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","three/examples/jsm/controls/OrbitControls.js":"7mqRv","1bf8c3a119bd9c1f":"hUMtI","locomotive-scroll":"iDXE3","@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4","ef7910b50d88621d":"bpZJN"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2022 Three.js Authors
@@ -35439,6 +35439,9 @@ var Native = /*#__PURE__*/ function() {
 }();
 exports.default = Smooth;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4"}]},["fHVYK","dV6cC"], "dV6cC", "parcelRequiree385")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4"}],"bpZJN":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("2MSMO") + "Untitled.3eb3446c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"dcqtO"}]},["fHVYK","dV6cC"], "dV6cC", "parcelRequiree385")
 
 //# sourceMappingURL=index.e82f28a0.js.map
