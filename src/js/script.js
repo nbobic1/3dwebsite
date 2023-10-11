@@ -3,38 +3,46 @@ import { AxesHelper, Box2, TorusGeometry } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import LocomotiveScroll from 'locomotive-scroll';
-const monkeyUrl = new URL('../assets/rop.glb', import.meta.url);
+//importing 3D object
+const monkeyUrl = new URL('../assets/aurora.glb', import.meta.url);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+	//shadows
+	// renderer.shadowMap.enabled = true;
+	// renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+	 renderer.setSize(window.innerWidth, window.innerHeight);
+	 document.body.appendChild(renderer.domElement);
+	// renderer.shadowMap.enabled = true;
 const scene = new THREE.Scene();
-renderer.shadowMap.enabled = true;
+
 //const camera = new THREE.OrthographicCamera( window.innerWidth / - 50, window.innerWidth / 50, window.innerHeight / 50, window.innerHeight / -50, - 500, 1000);
+//camera 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 70;
+	camera.position.z = 60;
+	camera.position.y = 	20;
+	camera.position.x=-10;
 //var controls;
-/*
-const controls = new THREE.OrbitControls(camera);
-controls.target.set(0, 5, 0);
-controls.update();*/
+
+// const controls = new THREE.OrbitControls(camera);
+// controls.target.set(0, 5, 0);
+// controls.update();
+let animationLength,prevScrollValue=0;
 //const hemiLight = new THREE.HemisphereLight( 0xFFFFFF, 0xffffff, 1);
 var roti = true;
 var rot_val = 0;
-const hemiLight = new THREE.DirectionalLight(0xffffff, 0.9);
-hemiLight.position.x = 20;
-hemiLight.position.y = 20;
-hemiLight.position.z = 80;
-hemiLight.castShadow = true;
-hemiLight.shadow.mapSize.width = 512; // default
-hemiLight.shadow.mapSize.height = 512; // default
-hemiLight.shadow.camera.left = -100;
-hemiLight.shadow.camera.right = 100;
-hemiLight.shadow.camera.top = 100;
-hemiLight.shadow.camera.bottom = -100;
-hemiLight.target.position.set(-10, 0, -4);
-scene.add(hemiLight);
+const hemiLight = new THREE.DirectionalLight(0xffffff, 1.2);
+	hemiLight.position.x = 20;
+	hemiLight.position.y = 20;
+	hemiLight.position.z = 120;
+	hemiLight.castShadow = true;
+	hemiLight.shadow.mapSize.width = 512; // default
+	hemiLight.shadow.mapSize.height = 512; // default
+	hemiLight.shadow.camera.left = -100;
+	hemiLight.shadow.camera.right = 100;
+	hemiLight.shadow.camera.top = 100;
+	hemiLight.shadow.camera.bottom = -100;
+	hemiLight.target.position.set(-10, 0, -4);
+//	const hemiLight =new THREE.HemisphereLight( 0xffffdf, 0xf8f8ff, 2 );
+	scene.add(hemiLight);
 
 var loader = new THREE.TextureLoader();
 var materialert = new THREE.MeshLambertMaterial({
@@ -46,8 +54,8 @@ var materialert = new THREE.MeshLambertMaterial({
 
 var geometryert = new THREE.PlaneGeometry(150, 80);
 var meshert = new THREE.Mesh(geometryert, materialert);
-scene.add(meshert);
-meshert.position.set(0, 0, 5);
+	scene.add(meshert);
+	meshert.position.set(0, 0, 5);
 
 var geometry1 = new THREE.PlaneGeometry(300, 200);
 const material4 = new THREE.MeshPhongMaterial({ color: 0xffffff });
@@ -73,34 +81,63 @@ mesh3.position.set(0, 0, -10);
         circle2.position.set(8,7,40); */
 /*const helper = new THREE.DirectionalLightHelper( hemiLight );
 scene.add( helper );*/
+let mixer,aniLen=[] //need this for animatons
+//importing/loading 3d object to scene, and setting it up
 const assetLoader = new GLTFLoader();
-assetLoader.load(
-	monkeyUrl.href,
-	function (gltf) {
-		gltf.scene.traverse(function (node) {
-			if (node.isMesh || node.isLight) node.castShadow = true;
-		});
-		gltf.castShadow = true;
-		const model = gltf.scene;
+			assetLoader.load(
+				monkeyUrl.href,
+				function (gltf) {
+					gltf.scene.traverse(function (node) {
+						if (node.isMesh || node.isLight) node.castShadow = true;
+					});
+					gltf.castShadow = true;
+					const model = gltf.scene;
+					//animation setup
+					mixer=new THREE.AnimationMixer(model)
+					console.log('ni',model)
+					const clips=gltf.animations
+					clips.forEach( function ( clip,index ) {
+						var animation=mixer.clipAction( clip )
+					 	animation.setLoop(THREE.LoopOnce)
+						console.log('animation name',animation._clip.name,animation)
+						animation.clampWhenFinished = true;
+						aniLen.push(animation._clip.duration)
+						console.log('adfa',animation._clip.duration)
+						animation.play();
+					} );
+					//model.rotation.z=Math.PI/3;
+					// model.rotation.y=Math.PI/2;
+					//setup initial position of object and add i to scene
+					model.castShadow = true;
+					model.position.x = 0;
+					model.position.z = 0;
+					model.position.y = 0;
+					//model.rotateY(3.14/2)
+					//model.rotateZ(3.14)
+					//model.rotateX(Math.PI*4/7)
+					scene.add(model);
 
-		// model.rotation.z=Math.PI/2;
-		model.castShadow = true;
-		//model.rotation.y=3*Math.PI/4;
-		model.position.x = 0;
-		model.position.z = 30;
-		model.position.y = 0;
-		scene.add(model);
-
-		console.log('radi');
-	},
-	undefined,
-	function (err) {
-		console.error(err);
-	}
-);
-
+					console.log('radi');
+				},
+				undefined,
+				function (err) {
+					console.error(err);
+				}
+			);
+const clock=new THREE.Clock()
 function animate() {
-	playScrollAnimations();
+	// if(mixer)
+	// {
+		
+	// console.log('scrol',scrollPercent/100*aniLen[1])
+	// 	mixer.forEach((mixer1,index)=>{
+	// 			mixer1.update((scalePercent-prevScrollValue)/100*aniLen[index])
+	// 	})
+	// 	prevScrollValue=scalePercent
+	// }
+	if(mixer)
+	mixer.update(clock.getDelta())
+	//playScrollAnimations();
 	//helper.update();
 	renderer.render(scene, camera);
 }
@@ -286,8 +323,8 @@ function getMouseDegrees(x, y, degreeLimit) {
 
 document.addEventListener('mousemove', function (e) {
 	var mousecoords = getMousePos(e);
-
-	if (scrollPercent == 0) moveJoint(mousecoords, 50);
+//mouse move, rotate 3d boject
+	//if (scrollPercent == 0) moveJoint(mousecoords, 50);
 });
 function getMousePos(e) {
 	return { x: e.clientX, y: e.clientY };
@@ -296,7 +333,8 @@ function moveJoint(mouse, degreeLimit) {
 	console.log('bruhh');
 	let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
 	if (roti) {
-		scene.children[pos].rotation.y = THREE.MathUtils.degToRad(degrees.x) * 2;
+		scene.children[pos].rotation.z = THREE.MathUtils.degToRad(degrees.x) * 4;
+		scene.children[pos].rotation.x = THREE.MathUtils.degToRad(degrees.y) * 4;
 		rot_val = THREE.MathUtils.degToRad(degrees.x) * 2;
 	}
 }
@@ -308,4 +346,5 @@ const scroll = new LocomotiveScroll({
 });
 scroll.on('scroll', ({ limit, scroll }) => {
 	scrollPercent = (scroll.y / limit.y) * 100;
+
 });
