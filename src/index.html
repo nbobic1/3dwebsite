@@ -76,17 +76,20 @@ html.has-scroll-dragging {
                 height: 0;
                 background-color: #2a2e34;
                 margin:0px;
+                overflow: scroll;
             }
-            canvas {
-                position: fixed;
+            .canvas1 {
+                position: absolute;
                 top: 0;
                 left: 0;
             }
             main {
                 width: 100vw;
-                height: 200vw;
+                height:0;
                 z-index: 99;
                 position: absolute;
+                top: 0;
+                left: 0;
                 justify-content: center;
                 text-align: center;
                 pointer-events: none;
@@ -189,43 +192,44 @@ li{
                     <li><a href="">About</a></li>
                   </ul>
             </menu> -->
-        <section data-scroll-container>
-            <h1 data-scroll-section> </h1>
-            <section data-scroll-section>
-                <br><br><br><br><br><br><br><br><br><br>
-                <p></p>
+       
+        </main>
+        <section data-scroll-container style="margin-top:100vh;">
+          <h1 data-scroll-section> </h1>
+          <section data-scroll-section>
+              <br><br><br><br><br><br><br><br><br><br>
+              <p></p>
+          </section>
+          <section data-scroll-section>
+            <h2>Historija</h2>
+            <div  data-scroll class="square">Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br> njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“. Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i objavila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+
+                
+                Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+        </section>
+         <section  data-scroll-section>
+          <p> dafdaf</p>
+          </section>
+          <section  data-scroll-section>
+            <p> dafdaf2</p>
             </section>
-            <section data-scroll-section>
-              <h2>Historija</h2>
-              <div  data-scroll class="square">Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br> njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“. Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i objavila rat. Nakon toga je počeo Prvi svjetski rat.[1]
+    <section  data-scroll-section><h2 >Historija</h2>
+              <div data-scroll class="square1">  Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br>
+             njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“.
+              Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i obj
+              avila rat. Nakon toga je počeo Prvi svjetski rat.[1]
 
                   
                   Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
-          </section>
-           <section  data-scroll-section>
-            <p> dafdaf</p>
-            </section>
-            <section  data-scroll-section>
-              <p> dafdaf2</p>
-              </section>
-      <section  data-scroll-section><h2 >Historija</h2>
-                <div data-scroll class="square1">  Muzej Mlade Bosne se nalazi u zgradi nekadašnje Šilerove radnje, pred kojom se 28. juna 1914. godine dogodio Sarajevski atentat, ubistva austrougarskog prijestolonasljednika Franje Ferdinanda i<br>
-               njegove supruge Sofije, koja je počinio sarajevski gimnazijalac Gavrilo Princip, pripadnik revolucionarne organizacije „Mlada Bosna“.
-                Za ovaj atentat Austro-Ugarska monarhija je smatrala Srbiju neposredno odgovornom, te joj je 23. jula uputila ultimatum, a ubrzo i obj
-                avila rat. Nakon toga je počeo Prvi svjetski rat.[1]
-
-                    
-                    Danas nosi naziv Muzej Sarajevo 1878-1918 ili Muzej Sarajevskog atentata i nalazi se na uglu ulica</div>
+          
+    </section>
             
-      </section>
-              
-      <section  data-scroll-section>
+    <section  data-scroll-section>
+      <p> dafdaf</p>
+      </section><section  data-scroll-section>
         <p> dafdaf</p>
-        </section><section  data-scroll-section>
-          <p> dafdaf</p>
-          </section>
         </section>
-        </main>
+      </section>
         <script type="module" src="./js/script.js"></script>
        </body>    
 </html>

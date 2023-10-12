@@ -540,7 +540,7 @@ var _locomotiveScroll = require("locomotive-scroll");
 var _locomotiveScrollDefault = parcelHelpers.interopDefault(_locomotiveScroll);
 //import LocomotiveScroll from 'locomotive-scroll';
 //importing 3D object
-const monkeyUrl = new URL(require("af36cfa0c174ee1f"));
+const monkeyUrl = new URL(require("b32c95a74c01b6ee"));
 const renderer = new _three.WebGLRenderer({
     antialias: true
 });
@@ -548,6 +548,7 @@ const renderer = new _three.WebGLRenderer({
 // renderer.shadowMap.enabled = true;
 // renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.domElement.classList.add("canvas1");
 document.body.appendChild(renderer.domElement);
 // renderer.shadowMap.enabled = true;
 const scene = new _three.Scene();
@@ -640,12 +641,14 @@ assetLoader.load(monkeyUrl.href, function(gltf) {
     //model.rotation.z=Math.PI/3;
     // model.rotation.y=Math.PI/2;
     //setup initial position of object and add i to scene
-    model.castShadow = true;
-    model.position.x = 0;
+    // model.castShadow = true;
+    model.position.x = -5;
     model.position.z = 0;
+    // model.position.x = -20;
+    // model.position.z = 30;
+    // model.rotateY(Math.PI)
     model.position.y = 0;
     //model.rotateY(3.14/2)
-    //model.rotateZ(3.14)
     //model.rotateX(Math.PI*4/7)
     scene.add(model);
     console.log("radi");
@@ -654,6 +657,14 @@ assetLoader.load(monkeyUrl.href, function(gltf) {
 });
 const clock = new _three.Clock();
 function animate() {
+    const canvas = document.getElementById("canvas1");
+    if (canvas) {
+        const pixelRatio = window.devicePixelRatio;
+        canvas.width = window.innerWidth * pixelRatio;
+        canvas.height = window.innerHeight * pixelRatio;
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+    }
     // if(mixer)
     // {
     // console.log('scrol',scrollPercent/100*aniLen[1])
@@ -662,7 +673,7 @@ function animate() {
     // 	})
     // 	prevScrollValue=scalePercent
     // }
-    if (mixer) mixer.update(clock.getDelta());
+    if (mixer) mixer.update(clock.getDelta() * 0.8);
     //playScrollAnimations();
     //helper.update();
     renderer.render(scene, camera);
@@ -838,7 +849,7 @@ scroll.on("scroll", ({ limit , scroll  })=>{
     scrollPercent = scroll.y / limit.y * 100;
 });
 
-},{"three":"ktPTu","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","three/examples/jsm/controls/OrbitControls.js":"7mqRv","50f391c73b374a09":"bpZJN","locomotive-scroll":"iDXE3","@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4","af36cfa0c174ee1f":"d0PsF"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","three/examples/jsm/controls/OrbitControls.js":"7mqRv","50f391c73b374a09":"bpZJN","locomotive-scroll":"iDXE3","@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4","b32c95a74c01b6ee":"5zDq8"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2022 Three.js Authors
@@ -35478,8 +35489,8 @@ var Native = /*#__PURE__*/ function() {
 }();
 exports.default = Smooth;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4"}],"d0PsF":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("2MSMO") + "aurora.54957802.glb" + "?" + Date.now();
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"fe7H4"}],"5zDq8":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("2MSMO") + "auror.e0f0bdb8.glb" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"dcqtO"}]},["fHVYK","dV6cC"], "dV6cC", "parcelRequiree385")
 

@@ -4,13 +4,13 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 //import LocomotiveScroll from 'locomotive-scroll';
 //importing 3D object
-const monkeyUrl = new URL('../assets/auror.glb', import.meta.url);
+const monkeyUrl = new URL('../assets/aurora2.glb', import.meta.url);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 	//shadows
 	// renderer.shadowMap.enabled = true;
 	// renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 	 renderer.setSize(window.innerWidth, window.innerHeight);
-	 renderer.domElement.classList.add('canvas1');
+	 renderer.domElement.classList.add('canvas2');
 	 document.body.appendChild(renderer.domElement);
 	// renderer.shadowMap.enabled = true;
 const scene = new THREE.Scene();
@@ -19,7 +19,7 @@ const scene = new THREE.Scene();
 //camera 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 	camera.position.z = 60;
-	camera.position.y =20;
+	camera.position.y = 20;
 	camera.position.x=-10;
 //var controls;
 
@@ -109,15 +109,12 @@ const assetLoader = new GLTFLoader();
 					//model.rotation.z=Math.PI/3;
 					// model.rotation.y=Math.PI/2;
 					//setup initial position of object and add i to scene
-					// model.castShadow = true;
-				     model.position.x = -5;
-					 model.position.z = 0;
-					// model.position.x = -20;
-					// model.position.z = 30;
-					// model.rotateY(Math.PI)
-
+					model.castShadow = true;
+					model.position.x = 0;
+					model.position.z = 0;
 					model.position.y = 0;
 					//model.rotateY(3.14/2)
+					//model.rotateZ(3.14)
 					//model.rotateX(Math.PI*4/7)
 					scene.add(model);
 
@@ -130,17 +127,6 @@ const assetLoader = new GLTFLoader();
 			);
 const clock=new THREE.Clock()
 function animate() {
-
-	const canvas = document.getElementById('canvas1');
-	if(canvas)
-	{
-		 const pixelRatio = window.devicePixelRatio;
- canvas.width = window.innerWidth * pixelRatio;
- canvas.height = window.innerHeight * pixelRatio;
- canvas.style.width = '100%';
- canvas.style.height = '100%';
-	}
-
 	// if(mixer)
 	// {
 		
@@ -151,8 +137,7 @@ function animate() {
 	// 	prevScrollValue=scalePercent
 	// }
 	if(mixer)
-	mixer.update(clock.getDelta()*0.8
-)
+	mixer.update(clock.getDelta())
 	//playScrollAnimations();
 	//helper.update();
 	renderer.render(scene, camera);
